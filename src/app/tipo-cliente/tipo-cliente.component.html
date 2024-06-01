@@ -1,0 +1,79 @@
+<main class="tipoclientes-container">
+  <div class="registro">
+    <h4>Registrar Tipo Clientes:</h4>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>Tipo de Cliente:</label>
+          <input type="text" [(ngModel)]="tipocliente" />
+        </div>
+      </div>
+
+    </div>
+    <div class="buttons">
+      <button (click)="agregarTipoCliente()" [hidden]="editingMode" [disabled]="addingTypeClient">
+        <ng-container *ngIf="!addingTypeClient; else addingTypeClientText">Agregar</ng-container>
+      </button>
+      <ng-template #addingTypeClientText>
+          Agregando...
+      </ng-template>
+      <button (click)="actualizarTipoCliente()" [hidden]="!editingMode" [disabled]="updatingTypeClient">
+          <ng-container *ngIf="!updatingTypeClient; else updatingTypeClientText">Actualizar</ng-container>
+      </button>
+      <ng-template #updatingTypeClientText>
+          Actualizando...
+      </ng-template>
+      <button (click)="resetCampos()">
+        Nuevo
+      </button>
+    </div>
+  </div>
+  <div class="tabla">
+    <div class="buscar">
+      <label>Buscar por:</label>
+      <select [(ngModel)]="selectedItem">
+        <option value="tipocliente">Tipo Cliente</option>
+      </select>
+      <div class="buscar-input">
+        <input [(ngModel)]="searchTerm" placeholder="Ingrese término de búsqueda">
+        <mat-icon>search</mat-icon>
+      </div>
+      <mat-icon (click)="limpiarBusqueda()">delete</mat-icon>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo Cliente</th>
+                <th>Activo</th>
+                <th>Estado</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tipocliente of tipoclientes" (click)="cargarTipoClienteSeleccionado(tipocliente)"
+          [hidden]="!buscarPorPropiedad(tipocliente)">
+                <td>{{ tipocliente.idtipocliente }}</td>
+                <td>{{ tipocliente.tipocliente }}</td>
+                <td>
+                    <span [ngClass]="{'activo': tipocliente.estado, 'no-activo': !tipocliente.estado}">
+                        {{ tipocliente.estado ? 'Sí' : 'No' }}
+                    </span>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="cambiarEstadoTipoCliente(tipocliente.idtipocliente)">
+                    Cambiar
+                  </button>
+                </td>
+                <td>
+                  <button class="button-delete" (click)="eliminarTipoCliente(tipocliente.idtipocliente)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</main>
+
+

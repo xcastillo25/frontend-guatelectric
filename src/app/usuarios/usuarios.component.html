@@ -1,0 +1,92 @@
+<main class="usuario-container">
+  <div class="close">
+    <button (click)="cerrarModal()">X</button>
+  </div>
+  <div class="title">
+    <h1>Mantenimiento de Usuarios</h1>
+  </div>
+  <div class="data">
+    <div class="datos">
+      <label>Empleado:</label>
+      <h2>{{ data.nombre }} {{ data.apellidos }}</h2>
+    </div>
+    <div class="datos">
+      <label>Roles:</label>
+      <select [(ngModel)]="idRolSeleccionado">
+        <option *ngFor="let rol of roles" [value]="rol.idrol">{{ rol.rol }}</option>
+      </select>
+    </div>
+    <div class="datos">
+      <label>Usuario:</label>
+      <input placeholder="Ingrese el nombre de usuario" [(ngModel)]="usuario">
+    </div>
+    <div class="datos">
+      <label>Contraseña:</label>
+      <div class="password">
+        <input type="{{ hidePassword ? 'password' : 'text' }}" id="password" name="password" placeholder="Ingrese su contraseña" [(ngModel)]="password">
+        <button mat-icon-button (click)="togglePasswordVisibility()">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="datos">
+      <label>Confirme su Contraseña:</label>
+      <div class="password">
+        <input type="{{ hidePassword ? 'password' : 'text' }}" id="confirmarPassword" name="confirmarPassword" placeholder="Confirme su contraseña" [(ngModel)]="confirmarPassword">
+        <button mat-icon-button (click)="togglePasswordVisibility()">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="buttons">
+      <button (click)="agregarUsuario()" [hidden]="editingMode" [disabled]="addingUser">
+        <ng-container *ngIf="!addingUser; else addingEmployeeText">Agregar</ng-container>
+      </button>
+      <ng-template #addingEmployeeText>
+          Agregando...
+      </ng-template>
+
+      <button (click)="actualizarUsuario()" [hidden]="!editingMode" [disabled]="updatingUser">
+          <ng-container *ngIf="!updatingUser; else updatingEmployeeText">Actualizar</ng-container>
+      </button>
+      <ng-template #updatingEmployeeText>
+          Actualizando...
+      </ng-template>
+      <button (click)="resetCampos()">Nuevo</button>
+    </div>
+  </div>
+  <div class="tabla">
+    <table>
+      <thead>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Activo</th>
+            <th>Estado</th>
+            <th>Eliminar</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios" (click)="cargarUsuarioSeleccionado(usuario)">
+              <td>{{ usuario.idusuario }}</td>
+              <td>{{ usuario.usuario }}</td>
+              <td>
+                  <span [ngClass]="{'activo': usuario.activo, 'no-activo': !usuario.activo}">
+                      {{ usuario.activo ? 'Sí' : 'No' }}
+                  </span>
+              </td>
+              <td>
+                <button class="button-activo" (click)="cambiarEstadoUsuario(usuario.idusuario)">
+                  Cambiar
+                </button>
+              </td>
+              <td>
+                <button class="button-delete" (click)="eliminarUsuario(usuario.idusuario)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

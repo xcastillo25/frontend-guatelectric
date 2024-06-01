@@ -1,0 +1,108 @@
+.inicio {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.inicio .ubication {
+  display: flex;
+  width: 65rem;
+  height: 26rem;
+  border-radius: 5px;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+/* Estilo base para el contenedor del mapa */
+.inicio .ubication .medidor-container {
+  width: 65rem;
+  height: 26rem; /* Asegura que el contenedor del mapa use todo el espacio disponible */
+  border-radius: 10px;
+  padding: 2px;
+  touch-action: manipulation; /* Mejora la interacción táctil evitando zoom accidental */
+  cursor: grab;
+}
+
+.inicio .ubication .medidor-container .map-container {
+  width: 100%;
+  height: 100%; /* Asegura que el contenedor del mapa use todo el espacio disponible */
+  border-radius: 10px;
+  padding: 2px;
+  touch-action: manipulation; /* Mejora la interacción táctil evitando zoom accidental */
+  cursor: grab;
+  border: 1px solid var(--color-gray);
+}
+
+.overlay {
+  background-color: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.inicio .ubication .map-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.inicio .ubication .map-buttons button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  border: 1px solid var(--color-gray);
+  background: var(--color-green);
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.425);
+  padding: 5px;
+}
+
+.inicio .ubication .map-buttons button:hover {
+  background: var(--color-red);
+}
+
+@media only screen and (max-width: 600px) {
+  .inicio .ubication {
+    width: 100%; /* Ajusta el ancho al de la pantalla */
+    height: auto; /* Altura automática para contener el mapa y botones */
+    flex-direction: column; /* Los elementos se apilan verticalmente */
+    gap: 0.5rem;
+  }
+
+  .inicio h1 {
+    font-size: 22.5px;
+  }
+  .inicio .ubication .medidor-container {
+    width: 100%; /* Ajusta el ancho al de la pantalla */
+    height: auto; /* Altura automática para adaptarse al contenido */
+    padding: 1px; /* Reduce el relleno para dispositivos más pequeños */
+  }
+
+  .inicio .ubication .medidor-container .map-container {
+    border-radius: 5px; /* Esquinas menos redondeadas para adaptarse a pantallas pequeñas */
+  }
+
+  .overlay {
+    /* Asegúrate de que cualquier superposición o pop-up se adapte correctamente /
+    font-size: 12px; / Texto más pequeño para ajustarse a la pantalla */
+  }
+
+  .inicio .ubication .map-buttons {
+    flex-direction: row; /* Los botones se organizan en fila en vez de columna /
+    justify-content: space-around; / Distribuye los botones uniformemente /
+    padding: 0; / Elimina el relleno si es necesario */
+  }
+
+  .inicio .ubication .map-buttons button {
+    width: auto; /* Ancho automático para acomodar el contenido /
+    padding: 3px; / Reducir el tamaño del relleno para ahorrar espacio /
+    font-size: 10px; / Texto más pequeño en los botones */
+  }
+}

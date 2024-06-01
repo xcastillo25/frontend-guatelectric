@@ -1,0 +1,56 @@
+<main class="configuracion-container">
+  <div class="registro">
+    <h4>Actualizar Datos de la Empresa:</h4>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>Empresa:</label>
+          <input type="text" [(ngModel)]="empresa" />
+        </div>
+        <div class="datos">
+          <label>Dirección:</label>
+          <input type="text" [(ngModel)]="direccion" />
+        </div>
+        <div class="datos">
+          <label>NIT:</label>
+          <input type="text" [(ngModel)]="nit" />
+        </div>
+        <div class="datos">
+          <label>Teléfono:</label>
+          <input type="text" [(ngModel)]="telefono" />
+        </div>
+        <div class="datos">
+          <label>Celular:</label>
+          <input type="text" [(ngModel)]="celular" />
+        </div>
+      </div>
+      <div class="image">
+        <div class="box">
+          <input type="file" #fileInput style="display:none" (change)="onFileSelected($event)">
+          <img [src]="imageUrl" alt="Foto" *ngIf="imageUrl"/>
+        </div>
+        <div class="buttons">
+          <button (click)="fileInput.click()">Agregar</button>
+          <button (click)="borrarImagen()">Borrar</button>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button>
+        Actualizar
+      </button>
+    </div>
+  </div>
+  <div class="datos">
+    <div class="info">
+      <h1>{{ miempresa.empresa }}</h1>
+      <h3>{{ miempresa.direccion }}</h3>
+      <h3>NIT: {{ miempresa.nit }}</h3>
+      <h3>Tel. {{ miempresa.telefono }}</h3>
+      <h3>Cel. {{ miempresa.celular }}</h3>
+    </div>
+    <div class="logo">
+      <img [src]="miempresa.foto" *ngIf="miempresa.foto" alt="Logo de la empresa">
+    </div>
+  </div>
+</main>

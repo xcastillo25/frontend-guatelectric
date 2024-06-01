@@ -1,0 +1,144 @@
+.configuracion-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  width: 65rem;
+}
+
+.configuracion-container .registro {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-gray-light);
+  width: 100%;
+  height: 15rem;
+  border-radius: 10px;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.configuracion-container .registro .group {
+  display: grid;
+  grid-template-columns: auto 15rem;
+}
+
+.configuracion-container .registro .group .info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+.configuracion-container .registro .group .info .datos {
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+}
+
+.configuracion-container .registro .group .info .datos input {
+  border: 1px solid var(--color-gray);
+  border-radius: 5px;
+  width: 100%;
+  height: 1.8rem;
+  padding: 0 5px;
+}
+
+.configuracion-container .registro .group .image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.configuracion-container .registro .group .image .box {
+  width: 7.5rem;
+  height: 7.5rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.configuracion-container .registro .group .image img {
+  width: 7.4rem;
+  height: 7.4rem;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.configuracion-container .registro .group .buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.configuracion-container .registro .group .buttons button {
+  width: 6rem;
+  height: 2rem;
+  border-radius: 5px;
+  background: var(--color-green);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.425);
+  border: 1px solid var(--color-gray);
+  cursor: pointer;
+}
+
+.configuracion-container .registro .group .buttons button:hover {
+  background: var(--color-red);
+  scale: 1.04;
+  transition: var(--transition);
+}
+
+.configuracion-container .registro .buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+
+.configuracion-container .registro .buttons button {
+  width: 7rem;
+  height: 2rem;
+  border-radius: 5px;
+  background: var(--color-green);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.425);
+  border: 1px solid var(--color-gray);
+  cursor: pointer;
+}
+
+.configuracion-container .registro .buttons button:hover {
+  background: var(--color-red);
+  scale: 1.04;
+  transition: var(--transition);
+}
+
+.configuracion-container .datos {
+  display: grid;
+  grid-template-columns: auto 30rem;
+  width: 100%;
+}
+
+.configuracion-container .datos .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.configuracion-container .datos .logo {
+  display: flex;
+  width: 30rem;
+  height: 12rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.configuracion-container .datos .logo img {
+  width: 100%; /* Ajustar el ancho de la imagen al contenedor */
+  height: auto; /* Para mantener la relación de aspecto */
+  border: 1px solid var(--color-gray-light);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}

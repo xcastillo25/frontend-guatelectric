@@ -1,0 +1,17 @@
+<main class="recovery-container">
+  <div class="close">
+    <button (click)="closeModal()">X</button>
+  </div>
+  <div class="title">
+    <h1>Recuperar contraseña</h1>
+  </div>
+  <div class="correo">
+    <label>Usuario:</label>
+    <input type="text" id="recovery-user" name="recovery-user" placeholder="Ingrese su usario">
+    <label>Correo electrónico:</label>
+    <input type="email" id="recovery-email" name="recovery-email" placeholder="Ingrese su correo de recuperación">
+  </div>
+  <div class="boton">
+    <button (click)="recoverPassword()">Recuperar contraseña</button>
+  </div>
+</main>

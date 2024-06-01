@@ -1,0 +1,138 @@
+<main class="empleado-container">
+  <div class="registro">
+    <h4>Registrar empleados:</h4>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>Nombre:</label>
+          <input type="text" [(ngModel)]="nombre" />
+        </div>
+        <div class="datos">
+          <label>Apellidos:</label>
+          <input type="text" [(ngModel)]="apellidos" />
+        </div>
+        <div class="datos">
+          <label>Teléfono:</label>
+          <input type="text" [(ngModel)]="telefono" />
+        </div>
+        <div class="datos">
+          <label>NIT:</label>
+          <input type="text" [(ngModel)]="nit" />
+        </div>
+        <div class="datos">
+          <label>CUI/DPI:</label>
+          <input type="text" [(ngModel)]="cui" />
+        </div>
+        <div class="datos">
+          <label>Email:</label>
+          <input type="email" [(ngModel)]="email" />
+        </div>
+      </div>
+      <div class="image">
+        <div class="box">
+          <input type="file" #fileInput style="display:none" (change)="onFileSelected($event)">
+          <img [src]="imageUrl" alt="Foto" *ngIf="imageUrl"/>
+        </div>
+        <div class="buttons">
+          <button (click)="fileInput.click()">Agregar</button>
+          <button (click)="borrarImagen()">Borrar</button>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+
+      <button (click)="agregarEmpleado()" [hidden]="editingMode" [disabled]="addingEmployee">
+        <ng-container *ngIf="!addingEmployee; else addingEmployeeText">Agregar</ng-container>
+      </button>
+      <ng-template #addingEmployeeText>
+          Agregando...
+      </ng-template>
+
+      <button (click)="actualizarEmpleado()" [hidden]="!editingMode" [disabled]="updatingEmployee">
+          <ng-container *ngIf="!updatingEmployee; else updatingEmployeeText">Actualizar</ng-container>
+      </button>
+      <ng-template #updatingEmployeeText>
+          Actualizando...
+      </ng-template>
+
+      <button (click)="resetCampos()">
+        Nuevo
+      </button>
+    </div>
+  </div>
+  <div class="tabla">
+    <div class="buscar">
+      <label>Buscar por:</label>
+      <select [(ngModel)]="selectedItem">
+        <option value="nombre">Nombre</option>
+        <option value="apellidos">Apellidos</option>
+        <option value="telefono">Teléfono</option>
+        <option value="nit">NIT</option>
+        <option value="cui">CUI</option>
+        <option value="email">Email</option>
+      </select>
+      <div class="buscar-input">
+        <input [(ngModel)]="searchTerm" placeholder="Ingrese término de búsqueda">
+        <mat-icon>search</mat-icon>
+      </div>
+      <mat-icon (click)="limpiarBusqueda()">delete</mat-icon>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Foto</th>
+                <th>Activo</th>
+                <th>Estado</th>
+                <th>Usuarios</th>
+                <th>Permisos</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleado of empleados" (click)="cargarEmpleadoSeleccionado(empleado)"
+          [hidden]="!buscarPorPropiedad(empleado)">
+                <td>{{ empleado.idempleado }}</td>
+                <td>{{ empleado.nombre }}</td>
+                <td>{{ empleado.apellidos }}</td>
+                <td>{{ empleado.telefono }}</td>
+                <td>{{ empleado.email }}</td>
+                <td>
+                  <div class="foto-container">
+                      <img [src]="empleado.foto" alt="Foto" class="foto-empleado">
+                  </div>
+                </td>
+                <td>
+                    <span [ngClass]="{'activo': empleado.activo, 'no-activo': !empleado.activo}">
+                        {{ empleado.activo ? 'Sí' : 'No' }}
+                    </span>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="cambiarEstadoEmpleado(empleado.idempleado)">
+                    Cambiar
+                  </button>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="abrirModalAgregarUsuario(empleado.idempleado, empleado.nombre, empleado.apellidos)">
+                      Ver
+                  </button>
+                </td>
+                <td>
+                    <button class="button-activo">
+                        Asignar
+                    </button>
+                </td>
+                <td>
+                  <button class="button-delete" (click)="eliminarEmpleado(empleado.idempleado)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</main>

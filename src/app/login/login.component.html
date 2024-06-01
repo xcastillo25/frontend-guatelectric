@@ -1,0 +1,35 @@
+<main class="login-container">
+  <div class="login-fondo">
+    <div class="login-log">
+      <div class="title">
+        <h1 class="geo">Guat</h1>
+        <h1 class="pro">Electric</h1>
+      </div>
+      <div class="subtitle">
+        <h5>Login de Empleados</h5>
+      </div>
+      <div class="user">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" placeholder="Ingrese su nombre de usuario" [(ngModel)]="username">
+      </div>
+      <div class="user">
+        <label for="password">Password:</label>
+        <div class="password">
+          <input type="{{ hidePassword ? 'password' : 'text' }}" id="password" name="password" placeholder="Ingrese su contraseña" [(ngModel)]="password">
+          <button mat-icon-button (click)="togglePasswordVisibility()">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </div>
+        <div class="login">
+          <button (click)="login()" [disabled]="isLoading">
+            {{ isLoading ? 'Ingresando...' : 'Iniciar Sesión' }}
+          </button>
+        </div>
+      </div>
+      <div class="recovery">
+        <label (click)="openRecoveryModal()">Recuperar contraseña</label>
+      </div>
+    </div>
+    <div class="login-tap"></div>
+  </div>
+</main>

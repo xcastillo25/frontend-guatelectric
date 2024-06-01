@@ -1,0 +1,95 @@
+<main class="lectura-container">
+  <div class="registro">
+    <h4>Registrar lectura</h4>
+    <div class="buscar-codigo">
+      <label>Ingresa el código:</label>
+      <input [(ngModel)]="search_codigo" placeholder="Ingresa el código del medidor"/>
+      <button (click)="buscarPorCodigo()" [disabled]="searchingRead">
+        <ng-container *ngIf="!searchingRead; else searchingReadText">Buscar</ng-container>
+      </button>
+      <ng-template #searchingReadText>
+          Buscando...
+      </ng-template>
+      <mat-icon (click)="resetCampos()">delete</mat-icon>
+    </div>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>Código:</label>
+          <input [(ngModel)]="codigo" disabled/>
+        </div>
+        <div class="datos">
+          <label>Nombre:</label>
+          <input [(ngModel)]="nombre" disabled/>
+        </div>
+        <div class="datos">
+          <label>Apellidos:</label>
+          <input [(ngModel)]="apellidos" disabled/>
+        </div>
+        <div class="datos">
+          <label>Dirección:</label>
+          <input [(ngModel)]="direccion" disabled/>
+        </div>
+      </div>
+      <div class="info">
+        <div class="datos">
+          <label>Lectura actual:</label>
+          <input type="number" [(ngModel)]="lectura_actual" (ngModelChange)="calculaConsumo()"/>
+        </div>
+        <div class="datos">
+          <label>Lectura anterior:</label>
+          <input [(ngModel)]="lectura_anterior" disabled/>
+        </div>
+        <div class="datos">
+          <label>Consumo en KW:</label>
+          <input [(ngModel)]="consumokw" disabled/>
+        </div>
+        <div class="datos">
+          <label>Consumo en Q.:</label>
+          <input [(ngModel)]="monto" disabled/>
+        </div>
+        <div class="datos">
+          <label>Mes:</label>
+          <select [(ngModel)]="mes">
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+          </select>
+        </div>
+        <div class="datos">
+          <label>Año:</label>
+          <input [(ngModel)]="anio"/>
+        </div>
+        <div class="datos">
+          <label>Cuota alumbrado:</label>
+          <input [(ngModel)]="alumbradopublico" disabled/>
+        </div>
+        <div class="datos">
+          <label>Cargo fijo mensual:</label>
+          <input [(ngModel)]="cargofijo" disabled/>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button (click)="agregarConsumo()" [disabled]="addingConsum">
+        <ng-container *ngIf="!addingConsum; else addingConsumText">Agregar</ng-container>
+      </button>
+      <ng-template #addingConsumText>
+          Agregando...
+      </ng-template>
+
+      <button>
+        Nuevo
+      </button>
+    </div>
+  </div>
+</main>

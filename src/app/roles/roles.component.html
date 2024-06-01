@@ -1,0 +1,77 @@
+<main class="roles-container">
+  <div class="registro">
+    <h4>Registrar roles:</h4>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>Rol:</label>
+          <input type="text" [(ngModel)]="rol" />
+        </div>
+      </div>
+
+    </div>
+    <div class="buttons">
+      <button (click)="agregarRol()" [hidden]="editingMode" [disabled]="addingRole">
+        <ng-container *ngIf="!addingRole; else addingRoleText">Agregar</ng-container>
+      </button>
+      <ng-template #addingRoleText>
+          Agregando...
+      </ng-template>
+      <button (click)="actualizarRol()" [hidden]="!editingMode" [disabled]="updatingRole">
+          <ng-container *ngIf="!updatingRole; else updatingRoleText">Actualizar</ng-container>
+      </button>
+      <ng-template #updatingRoleText>
+          Actualizando...
+      </ng-template>
+      <button (click)="resetCampos()">
+        Nuevo
+      </button>
+    </div>
+  </div>
+  <div class="tabla">
+    <div class="buscar">
+      <label>Buscar por:</label>
+      <select [(ngModel)]="selectedItem">
+        <option value="rol">Rol</option>
+      </select>
+      <div class="buscar-input">
+        <input [(ngModel)]="searchTerm" placeholder="Ingrese término de búsqueda">
+        <mat-icon>search</mat-icon>
+      </div>
+      <mat-icon (click)="limpiarBusqueda()">delete</mat-icon>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rol</th>
+                <th>Activo</th>
+                <th>Estado</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rol of roles" (click)="cargarRolSeleccionado(rol)"
+          [hidden]="!buscarPorPropiedad(rol)">
+                <td>{{ rol.idrol }}</td>
+                <td>{{ rol.rol }}</td>
+                <td>
+                    <span [ngClass]="{'activo': rol.activo, 'no-activo': !rol.activo}">
+                        {{ rol.activo ? 'Sí' : 'No' }}
+                    </span>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="cambiarEstadoRol(rol.idrol)">
+                    Cambiar
+                  </button>
+                </td>
+                <td>
+                  <button class="button-delete" (click)="eliminarRol(rol.idrol)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</main>

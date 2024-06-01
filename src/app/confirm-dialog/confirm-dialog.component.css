@@ -1,0 +1,30 @@
+.confirm-dialog-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 14px;
+  border: 3px solid var(--color-green);
+}
+
+.confirm-dialog-container button {
+  width: 6rem;
+  margin: 0.5rem;
+  height: 2.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--color-gray-light);
+  color: white;
+  background: var(--color-green);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.confirm-dialog-container button:hover {
+  background: var(--color-red);
+  scale: 1.04;
+}

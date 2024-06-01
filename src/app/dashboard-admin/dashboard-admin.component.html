@@ -1,0 +1,113 @@
+<main class="main-dashboard">
+  <div class="asidebar" [class.asidebar-visible]="sidebarVisible">
+    <div class="logo">
+        <h2 class="geo">Guat</h2>
+        <h2 class="pro">Electric</h2>
+    </div>
+    <div class="user">
+      <img [src]="datosUsuario?.foto" alt="Foto del usuario"/>
+      <div>
+        <h4>{{ datosUsuario?.nombre }} {{ datosUsuario?.apellidos }}</h4>
+        <h5>Rol</h5>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="button" (click)="toggleActive('button1', 'dashboard', 'Inicio'); setActiveComponent(inicioComponent)" [class.active]="isActive('button1')">
+        <mat-icon>dashboard</mat-icon>
+        <h5>Inicio</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button2', 'groups_2', 'Empleados'); setActiveComponent(empleadoComponent)" [class.active]="isActive('button2')">
+        <mat-icon>groups_2</mat-icon>
+        <h5>Empleados</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button3', 'supervisor_account', 'Roles'); setActiveComponent(rolesComponent)" [class.active]="isActive('button3')">
+        <mat-icon>supervisor_account</mat-icon>
+        <h5>Roles</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button4', 'engineering', 'Tipo de Clientes'); setActiveComponent(tipoclienteComponent)" [class.active]="isActive('button4')">
+        <mat-icon>engineering</mat-icon>
+        <h5>Tipo Cliente</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button5', 'call', 'Telefonos'); setActiveComponent(telefonoComponent)" [class.active]="isActive('button5')">
+        <mat-icon>call</mat-icon>
+        <h5>Teléfonos</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button6', 'person', 'Clientes'); setActiveComponent(clientesComponent)" [class.active]="isActive('button6')">
+        <mat-icon>person</mat-icon>
+        <h5>Clientes</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button7', 'query_stats', 'Tipo de Medidores'); setActiveComponent(tipomedidorComponent)" [class.active]="isActive('button7')">
+        <mat-icon>query_stats</mat-icon>
+        <h5>Tipo Medidor</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button8', 'electric_bolt', 'Medidores'); setActiveComponent(medidorComponent)" [class.active]="isActive('button8')">
+        <mat-icon>electric_bolt</mat-icon>
+        <h5>Medidores</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button9', 'barcode_reader', 'Lectura'); setActiveComponent(lecturaComponent)" [class.active]="isActive('button9')">
+        <mat-icon>barcode_reader</mat-icon>
+        <h5>Lectura</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button" (click)="toggleActive('button10', 'receipt_long', 'facturas'); setActiveComponent(facturasComponent)" [class.active]="isActive('button10')">
+        <mat-icon>receipt_long</mat-icon>
+        <h5>Facturas</h5>
+        <div class="indicator"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="button" (click)="toggleActive('button0', 'settings', 'Configuración'); setActiveComponent(configuracionComponent)"  [class.active]="isActive('button0')">
+        <mat-icon>settings</mat-icon>
+        <h5>Configuración</h5>
+        <div class="indicator"></div>
+      </div>
+      <div class="button-session" (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon>
+        <h5>Cerrar Sesión</h5>
+        <div class="indicator"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="title">
+      <div class="text">
+        <mat-icon>{{ selectedIcon }}</mat-icon>
+        <h1>{{ selectedText }}</h1>
+      </div>
+      <div class="buttons">
+        <div class="notification-button">
+          <button>
+            <mat-icon>notifications</mat-icon>
+          </button>
+          <div class="notification-count">
+            99
+          </div>
+        </div>
+        <div class="calendar-button">
+            <input matInput [matDatepicker]="picker" placeholder="Seleccione una fecha" [(ngModel)]="fechaSeleccionada">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker #datepickercolor color="warn"></mat-datepicker>
+        </div>
+        <div class="menu-button">
+          <button (click)="toggleSidebar()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="work-area">
+      <ng-container *ngIf="activeComponent">
+        <ng-container *ngComponentOutlet="activeComponent"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</main>

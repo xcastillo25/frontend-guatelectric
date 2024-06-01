@@ -1,0 +1,132 @@
+<main class="medidor-container">
+  <div class="registro">
+    <h4>Registrar medidores:</h4>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>Serie:</label>
+          <input type="text" [(ngModel)]="serie" />
+        </div>
+        <div class="datos">
+          <label>Código:</label>
+          <input type="text" [(ngModel)]="codigo" />
+        </div>
+        <div class="datos">
+          <label>Ubicación:</label>
+          <input type="text" [(ngModel)]="ubicacion" placeholder="Ubicación" readonly/>
+        </div>
+        <div class="datos">
+          <label>Cliente:</label>
+          <select [(ngModel)]="idClienteSeleccionado">
+            <option *ngFor="let cliente of clientes" [value]="cliente.idcliente">{{ cliente.nombre + ' ' + cliente.apellidos }}</option>
+          </select>
+        </div>
+        <div class="datos">
+          <label>Tipo Medidores:</label>
+          <select [(ngModel)]="idTipoMedidorSeleccionado">
+            <option *ngFor="let tipomedidor of tipomedidores" [value]="tipomedidor.idtipomedidor">{{ tipomedidor.tipomedidor }}</option>
+          </select>
+        </div>
+        <div class="datos">
+          <label>Direccion:</label>
+          <input type="email" [(ngModel)]="direccion" />
+        </div>
+      </div>
+      <div class="ubication">
+        <div class="medidor-container">
+          <div #mapContainer class="map-container" style="width: 100%; height: 400px;"></div>
+        </div>
+        <div class="map-buttons">
+          <button (click)="locate()">
+            <mat-icon>my_location</mat-icon>
+            Ubicar
+          </button>
+          <button (click)="increaseZoom()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button (click)="decreaseZoom()">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button (click)="toggleFullScreen()">
+            <mat-icon>open_in_full</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button (click)="agregarMedidor()" [hidden]="editingMode" [disabled]="addingMetric">
+        <ng-container *ngIf="!addingMetric; else addingMetricText">Agregar</ng-container>
+      </button>
+      <ng-template #addingMetricText>
+          Agregando...
+      </ng-template>
+
+      <button (click)="actualizarMedidor()" [hidden]="!editingMode" [disabled]="updatingMetric">
+          <ng-container *ngIf="!updatingMetric; else updatingMetricText">Actualizar</ng-container>
+      </button>
+      <ng-template #updatingMetricText>
+          Actualizando...
+      </ng-template>
+
+      <button (click)="resetCampos()">
+        Nuevo
+      </button>
+    </div>
+  </div>
+  <div class="tabla">
+    <div class="buscar">
+      <label>Buscar por:</label>
+      <select [(ngModel)]="selectedItem">
+        <option value="serie">Serie</option>
+        <option value="codigo">Codigo</option>
+        <option value="direccion">Dirección</option>
+      </select>
+      <div class="buscar-input">
+        <input [(ngModel)]="searchTerm" placeholder="Ingrese término de búsqueda">
+        <mat-icon>search</mat-icon>
+      </div>
+      <mat-icon (click)="limpiarBusqueda()">delete</mat-icon>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Serie</th>
+                <th>Código</th>
+                <th>Ubicación</th>
+                <th>Direccion</th>
+                <th>Activo</th>
+                <th>Estado</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medidor of medidores" (click)="cargarMedidorSeleccionado(medidor)"
+          [hidden]="!buscarPorPropiedad(medidor)">
+                <td>{{ medidor.idmedidor }}</td>
+                <td>{{ medidor.serie }}</td>
+                <td>{{ medidor.codigo }}</td>
+                <td>{{ medidor.ubicacion }}</td>
+                <td>{{ medidor.direccion }}</td>
+                <td>
+                    <span [ngClass]="{'activo': medidor.estado, 'no-activo': !medidor.estado}">
+                        {{ medidor.estado ? 'Sí' : 'No' }}
+                    </span>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="cambiarEstadoMedidor(medidor.idmedidor)">
+                    Cambiar
+                  </button>
+                </td>
+                <td>
+                  <button class="button-delete" (click)="eliminarMedidor(medidor.idmedidor)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</main>
+
+

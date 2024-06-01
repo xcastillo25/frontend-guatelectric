@@ -1,0 +1,96 @@
+<main class="tipomedidores-container">
+  <div class="registro">
+    <h4>Registrar Tipo Medidores:</h4>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>Tipo de Medidor:</label>
+          <input type="text" [(ngModel)]="tipomedidor" />
+        </div>
+        <div class="datos">
+          <label>Tarifa:</label>
+          <input type="number" [(ngModel)]="tarifa" />
+        </div>
+        <div class="datos">
+          <label>Cuota de Alumbrado Público:</label>
+          <input type="number" [(ngModel)]="alumbradopublico" />
+        </div>
+        <div class="datos">
+          <label>Cargo Fijo Mensual:</label>
+          <input type="number" [(ngModel)]="cargofijo" />
+        </div>
+      </div>
+
+    </div>
+    <div class="buttons">
+      <button (click)="agregarTipoMedidor()" [hidden]="editingMode" [disabled]="addingTypeMetric">
+        <ng-container *ngIf="!addingTypeMetric; else addingTypeMetricText">Agregar</ng-container>
+      </button>
+      <ng-template #addingTypeMetricText>
+          Agregando...
+      </ng-template>
+      <button (click)="actualizarTipoMedidor()" [hidden]="!editingMode" [disabled]="updatingTypeMetric">
+          <ng-container *ngIf="!updatingTypeMetric; else updatingTypeMetricText">Actualizar</ng-container>
+      </button>
+      <ng-template #updatingTypeMetricText>
+          Actualizando...
+      </ng-template>
+      <button (click)="resetCampos()">
+        Nuevo
+      </button>
+    </div>
+  </div>
+  <div class="tabla">
+    <div class="buscar">
+      <label>Buscar por:</label>
+      <select [(ngModel)]="selectedItem">
+        <option value="tipomedidor">Tipo Medidor</option>
+        <option value="tarifa">Tarifa</option>
+      </select>
+      <div class="buscar-input">
+        <input [(ngModel)]="searchTerm" placeholder="Ingrese término de búsqueda">
+        <mat-icon>search</mat-icon>
+      </div>
+      <mat-icon (click)="limpiarBusqueda()">delete</mat-icon>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo Cliente</th>
+                <th>Tarifa</th>
+                <th>Alumbrado</th>
+                <th>Cargo Fijo</th>
+                <th>Activo</th>
+                <th>Estado</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tipomedidor of tipomedidores" (click)="cargarTipoMedidorSeleccionado(tipomedidor)"
+          [hidden]="!buscarPorPropiedad(tipomedidor)">
+                <td>{{ tipomedidor.idtipomedidor }}</td>
+                <td>{{ tipomedidor.tipomedidor }}</td>
+                <td>{{ tipomedidor.tarifa }}</td>
+                <td>{{ tipomedidor.alumbradopublico }}</td>
+                <td>{{ tipomedidor.cargofijo }}</td>
+                <td>
+                    <span [ngClass]="{'activo': tipomedidor.estado, 'no-activo': !tipomedidor.estado}">
+                        {{ tipomedidor.estado ? 'Sí' : 'No' }}
+                    </span>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="cambiarEstadoTipoMedidor(tipomedidor.idtipomedidor)">
+                    Cambiar
+                  </button>
+                </td>
+                <td>
+                  <button class="button-delete" (click)="eliminarTipoMedidor(tipomedidor.idtipomedidor)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</main>

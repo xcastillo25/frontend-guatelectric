@@ -1,0 +1,87 @@
+.tipomedidores-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  width: 65rem;
+}
+
+.tipomedidores-container .registro {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-gray-light);
+  width: 100%;
+  height: 15rem;
+  border-radius: 10px;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.tipomedidores-container .registro .group {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.tipomedidores-container .registro .group .info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+.tipomedidores-container .registro .group .info .datos {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.tipomedidores-container .registro .buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+
+.tipomedidores-container .registro .group .info .datos input {
+  border: 1px solid var(--color-gray);
+  border-radius: 5px;
+  width: 100%;
+  height: 1.8rem;
+  padding: 0 5px;
+  font-size: 14px;
+}
+
+.tipomedidores-container .registro .buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+
+.tipomedidores-container .registro .buttons button {
+  width: 7rem;
+  height: 2rem;
+  border-radius: 5px;
+  background: var(--color-green);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.425);
+  border: 1px solid var(--color-gray);
+  cursor: pointer;
+}
+
+.tipomedidores-container .registro .buttons button:hover {
+  background: var(--color-red);
+  scale: 1.04;
+  transition: var(--transition);
+}
+
+.my-custom-snackbar {
+  background: #ff0000;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .tipomedidores-container {
+    width: 25.5rem;
+  }
+}

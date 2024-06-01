@@ -1,0 +1,85 @@
+.recovery-container {
+  width: 25rem;
+  height: 22rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+}
+
+.recovery-container .close {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+
+.recovery-container .close button {
+  font-weight: bold;
+  background: var(--color-red);
+  color: white;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.recovery-container .close button:hover {
+  background: var(--color-green);
+}
+
+.recovery-container .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+}
+
+.recovery-container .title h1 {
+  font-size: 22px;
+}
+
+.recovery-container .correo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 1.5rem;
+}
+
+.recovery-container .correo label {
+  font-size: 15px;
+}
+
+.recovery-container .correo input {
+  border: 1px solid gray;
+  height: 2.5rem;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.recovery-container .boton {
+  margin-top: 1.5rem;
+  padding: 0 1.5rem;
+}
+
+.recovery-container .boton button {
+  width: 100%;
+  height: 2.8rem;
+  background: var(--color-green);
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  transition: var(--transition);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.recovery-container .boton button:hover {
+  background: var(--color-red);
+  scale: 1.04;
+}

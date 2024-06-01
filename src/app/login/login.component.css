@@ -1,0 +1,174 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(170, 141, 47, 0.13);
+}
+
+.login-fondo {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 65%;
+  height: 30rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.514);
+}
+
+.login-log {
+  width: 40%;
+  height: 100%;
+  background: var(--color-white);
+  border-radius: 10px;
+  padding: 0 1.5rem;
+}
+
+.login-log .title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.login-log .title .geo {
+  color: var(--color-red);
+}
+
+.login-log .title .pro {
+  color: var(--color-green);
+}
+
+.login-log .subtitle {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-log .subtitle h5 {
+  font-weight: 500;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.login-log .user {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.login-log .user input {
+  border: 1px solid gray;
+  height: 2.5rem;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.login-log .user .password {
+  border: 1px solid gray;
+  height: 2.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+}
+
+.login-log .user .password input {
+  border: 0;
+  height: 2.4rem;
+  width: 90%;
+  align-items: center;
+  background: transparent;
+}
+
+.login-log .user .password button {
+  display: flex;
+  background: transparent;
+  align-items: center;
+}
+
+.login-log .user .password button mat-icon {
+  color: #6b6b6b;
+  cursor: pointer;
+}
+
+.login-log .login {
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.login-log .login button {
+  width: 100%;
+  height: 2.8rem;
+  background: var(--color-green);
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  transition: var(--transition);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.login-log .login button:hover {
+  background: var(--color-red);
+  scale: 1.04;
+}
+
+.login-log .recovery {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+
+.login-log .recovery label {
+  font-size: 16px;
+  color: var(--color-red);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login-log .recovery label:hover {
+  color: var(--color-green);
+}
+
+.login-tap {
+  width: 60%;
+  height: 100%;
+  background: var(--color-white);
+  background-image: url("../../assets/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 8px 8px 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-fondo {
+    width: 90%;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-log {
+    width: 100%; /* Ajustar el ancho del formulario */
+    height: 100%;
+  }
+
+  .login-log .title {
+    margin-top: 1rem; /* Ajustar el espacio superior del título */
+  }
+
+  .login-log .recovery {
+    margin-bottom: 1.5rem;
+  }
+
+  .login-tap {
+    display: none;
+  }
+}

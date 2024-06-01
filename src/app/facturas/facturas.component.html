@@ -1,0 +1,59 @@
+<main class="factura-container">
+  <div class="tabla">
+    <div class="buscar">
+      <label>Buscar por:</label>
+      <select [(ngModel)]="selectedItem">
+        <option value="nofactura">No. Factura</option>
+        <option value="fecha">Fecha</option>
+        <option value="nombre">Nombre</option>
+        <option value="apellidos">Apellidos</option>
+      </select>
+      <div class="buscar-input">
+        <input [(ngModel)]="searchTerm" placeholder="Ingrese término de búsqueda">
+        <mat-icon>search</mat-icon>
+      </div>
+      <mat-icon (click)="limpiarBusqueda()">delete</mat-icon>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>No. Factura</th>
+                <th>Fecha</th>
+                <th>Consumo KW</th>
+                <th>NIT</th>
+                <th>Cliente</th>
+                <th>Correo</th>
+                <th>Enviada</th>
+                <th>Imprimir</th>
+                <th>Enviar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let factura of facturas" (click)="cargarFacturaSeleccionada(factura)"
+          [hidden]="!buscarPorPropiedad(factura)">
+                <td>{{ factura.nofactura }}</td>
+                <td>{{ factura.fecha }}</td>
+                <td>{{ factura.consumokw }}</td>
+                <td>{{ factura.nit }}</td>
+                <td>{{ factura.nombre }} {{factura.apellidos}}</td>
+                <td>{{ factura.correo }}</td>
+                <td>
+                  <span [ngClass]="{'activo': factura.enviado, 'no-activo': !factura.enviado}">
+                      {{ factura.enviado ? 'Sí' : 'No' }}
+                  </span>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="imprimirFacturas()">
+                    Imprimir
+                  </button>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="enviarFactura()">
+                    Enviar
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</main>

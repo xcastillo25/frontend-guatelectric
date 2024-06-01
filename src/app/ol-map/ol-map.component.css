@@ -1,0 +1,5 @@
+/* Asegúrate de que el contenedor tenga una altura definida, o el mapa no se mostrará */
+:host {
+  display: block;
+  height: 100%;
+}

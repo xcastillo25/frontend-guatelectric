@@ -1,0 +1,122 @@
+<main class="cliente-container">
+  <div class="registro">
+    <h4>Registrar clientes:</h4>
+    <div class="group">
+      <div class="info">
+        <div class="datos">
+          <label>NIT:</label>
+          <input type="text" [(ngModel)]="nit" />
+        </div>
+        <div class="datos">
+          <label>Nombre:</label>
+          <input type="text" [(ngModel)]="nombre" />
+        </div>
+        <div class="datos">
+          <label>Apellidos:</label>
+          <input type="text" [(ngModel)]="apellidos" />
+        </div>
+        <div class="datos">
+          <label>Correo:</label>
+          <input type="text" [(ngModel)]="correo" />
+        </div>
+        <div class="datos">
+          <label>Dirección</label>
+          <input type="text" [(ngModel)]="direccion" />
+        </div>
+        <div class="datos">
+          <label>Teléfono:</label>
+          <select [(ngModel)]="idTelefonoSeleccionado">
+            <option *ngFor="let telefono of telefonos" [value]="telefono.idtelefono">{{ telefono.telefono }}</option>
+          </select>
+        </div>
+        <div class="datos">
+          <label>Tipo Clientes:</label>
+          <select [(ngModel)]="idTipoClienteSeleccionado">
+            <option *ngFor="let tipocliente of tipoclientes" [value]="tipocliente.idtipocliente">{{ tipocliente.tipocliente }}</option>
+          </select>
+        </div>
+        <div class="datos">
+          <label>Observaciones:</label>
+          <input type="email" [(ngModel)]="observaciones" />
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button (click)="agregarCliente()" [hidden]="editingMode" [disabled]="addingClient">
+        <ng-container *ngIf="!addingClient; else addingClientText">Agregar</ng-container>
+      </button>
+      <ng-template #addingClientText>
+          Agregando...
+      </ng-template>
+
+      <button (click)="actualizarCliente()" [hidden]="!editingMode" [disabled]="updatingClient">
+          <ng-container *ngIf="!updatingClient; else updatingClientText">Actualizar</ng-container>
+      </button>
+      <ng-template #updatingClientText>
+          Actualizando...
+      </ng-template>
+
+      <button (click)="resetCampos()">
+        Nuevo
+      </button>
+    </div>
+  </div>
+  <div class="tabla">
+    <div class="buscar">
+      <label>Buscar por:</label>
+      <select [(ngModel)]="selectedItem">
+        <option value="nombre">Nombre</option>
+        <option value="apellidos">Apellidos</option>
+        <option value="nit">NIT</option>
+        <option value="correo">Correo</option>
+        <option value="direccion">Dirección</option>
+      </select>
+      <div class="buscar-input">
+        <input [(ngModel)]="searchTerm" placeholder="Ingrese término de búsqueda">
+        <mat-icon>search</mat-icon>
+      </div>
+      <mat-icon (click)="limpiarBusqueda()">delete</mat-icon>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NIT</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Direccion</th>
+                <th>Correo</th>
+                <th>Activo</th>
+                <th>Estado</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes" (click)="cargarClienteSeleccionado(cliente)"
+          [hidden]="!buscarPorPropiedad(cliente)">
+                <td>{{ cliente.idcliente }}</td>
+                <td>{{ cliente.nit }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellidos }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.correo }}</td>
+                <td>
+                    <span [ngClass]="{'activo': cliente.estado, 'no-activo': !cliente.estado}">
+                        {{ cliente.estado ? 'Sí' : 'No' }}
+                    </span>
+                </td>
+                <td>
+                  <button class="button-activo" (click)="cambiarEstadoCliente(cliente.idcliente)">
+                    Cambiar
+                  </button>
+                </td>
+                <td>
+                  <button class="button-delete" (click)="eliminarCliente(cliente.idcliente)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</main>
